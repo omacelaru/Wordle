@@ -1,2 +1,2 @@
 # Wordle
-Jocul Wordle pentru client.
+main.cpp contine jocul Wordle pentru client.
