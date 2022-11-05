@@ -16,6 +16,10 @@ struct alfa
 
 int k,okm,y,prima=1;
 char s[11456][6];
+int st[6],n=26,p=5,l,m,i,z,a,b,stc[6],npc=5,v_c[6],v_i[6][26],q[6];
+char rez[6];
+int pc_bk[3500][5],c_bk[66000][5];
+char cc[6][2],cpc[6],spc[1000][6],u;
 
 int poz(int l, int r, alfa a[])
 {
@@ -47,10 +51,7 @@ void quick(int l, int r)
         quick(k+1,r);
     }
 }
-int st[6],n=26,p=5,l,m,i,z,a,b,stc[6],npc=5,v_c[6],v_i[6][26],q[6];
-char rez[6];
-int pc_bk[3500][5],c_bk[66000][5];
-char cc[6][2],cpc[6],spc[1000][6],u;
+
 
 int caut_bin(char a[],long l, long r)
 {
@@ -228,6 +229,7 @@ void pc_back()
             m--;
     }
 }
+
 int main()
 {
 
@@ -294,7 +296,7 @@ int main()
 
 
         quick(0,25);
-       /* for(i=0;i<26;i++)
+        /* for(i=0;i<26;i++)
             cout<<e[i].c<<" "<<e[i].x<<endl;*/
         int nr=1,gasit=0;
 
@@ -334,6 +336,7 @@ int main()
         prima=0;
         if(gasit==0)
             cout<<"nu am gasit cuv"<<endl;
+        
         int stg,len,lmax=-1,car,lit,poz1=0,poz2=u-1;
         for(int re=0;re<5&&poz1<poz2;re++)
         {
@@ -413,8 +416,5 @@ int main()
             }
             cout<<endl;nrr++;
         }while(gasitcuv==0);
-
-
-
     return 0;
 }
