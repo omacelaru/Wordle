@@ -52,7 +52,6 @@ void quick(int l, int r)
     }
 }
 
-
 int caut_bin(char a[],long l, long r)
 {
     if(l>r) return -1;
@@ -64,11 +63,11 @@ int caut_bin(char a[],long l, long r)
     else
         caut_bin(a,l,m-1);
 }
+
 void c_init()
 {
     stc[a]=0;
 }
-
 int c_succesor()
 {
     if(stc[a]<n)
@@ -132,7 +131,6 @@ void init()
 {
     st[m]=0;
 }
-
 int succesor()
 {
     if(st[m]<npc)
@@ -143,7 +141,6 @@ int succesor()
     else
         return 0;
 }
-
 int pc_valid()
 {
 
