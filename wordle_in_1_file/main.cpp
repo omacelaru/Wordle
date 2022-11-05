@@ -365,7 +365,7 @@ int main()
                 gasitcuv=1;
                 for(i=0;i<5;i++)
                     cout<< t[i]<<" 1"<<endl;
-                cout<<endl<<"Felicitari ai ghicit cuvantul "<< s[c] <<" din "<<nrr+1<<" incercari"<<endl;
+                cout<<endl<<"Bravo MIE! Am ghicit cuvantul "<< s[c] <<" din "<<nrr+1<<" incercari"<<endl;
             }
             else
             {
