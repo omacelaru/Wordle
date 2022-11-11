@@ -230,7 +230,7 @@ void citire() {
 void cuvant_random() {
     srand(time(0));
     for (int i = 0; i < 10; i++)
-        index_random = rand() % 11455;
+        index_random = rand() % 11454;
 }
 
 //Calcul pentru informatia fiecarei litere
