@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cmath>
 #include <ctime>
-
+//5.44124 medie
 using namespace std;
 const int NUMAR_LITERE = 26;
 const int NUMAR_LITERA = 2;
