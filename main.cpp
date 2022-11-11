@@ -27,7 +27,7 @@ struct alfa {
     char lit[NUMAR_LITERA];
 } litera[NUMAR_LITERE];
 
-//numar_col_incorectuick sort
+//Quick sort
 int poz(int l, int r, alfa ax[]) {
     int i = l, j = r, i1 = 0, j1 = -1, c;
     alfa aux;
@@ -67,9 +67,7 @@ int cautare_binara(char cuv[], long l, long r) {
     else
         return cautare_binara(cuv, l, m - 1);
 }
-
 //sfarsit Cautare binara
-
 
 //Combinari Backtraking
 void combinari_initializare() {
@@ -154,6 +152,7 @@ int produs_car_valid() {
             if (stiva_produs_car[b] != x + 1)
                 return 0;
         }
+    
     for (i = 0; i < 5; i++) {
         if (vector_incorect[i][0] != -1 && b == i + 1) {
             nr = 0;
@@ -282,7 +281,7 @@ int generare() {
             cuvant_din_produs_car[4] = litera_din_combinari[solutie_produs_car[k][4] - 1][0];
             cuvant_din_produs_car[5] = '\0';
 
-            if (cautare_binara(cuvant_din_produs_car, 0, 11455) == 1) {
+            if (cautare_binara(cuvant_din_produs_car, 0, 11454) == 1) {
                 strcpy(sir_de_solutii[numar_solutii++], cuvant_din_produs_car);
                 gasit_cuvant = 1;
             }
@@ -318,16 +317,20 @@ int generare() {
 void verificare() {
     char cuvant_gasit[NUMAR_LITERE_CUVANT];
     strcpy(cuvant_gasit, sir_de_solutii[index_cuvant]);
-    cout << cuvant_gasit << endl;
     cuvant_gasit[5] = '\0';
-    if (strcmp(cuvant[index_random], cuvant_gasit) == 0) {
+    cout << cuvant_gasit << endl;
+    
+    if (strcmp(cuvant[index_random], cuvant_gasit) == 0)
+    {
         gasit_solutie = true;
         for (int i = 0; i < 5; i++)
             cout << cuvant_gasit[i] << " 1" << endl;
         cout << endl << "Bravo MIE! Am ghicit cuvantul " << cuvant[index_random] << " din " << numar_incercari + 1
              << " incercari"
              << endl;
-    } else {
+    } 
+    else
+    {
         for (int i = 0; i < 5; i++) {
             if (cuvant[index_random][i] == cuvant_gasit[i]) {
                 cout << cuvant_gasit[i] << " 1" << endl;
@@ -336,7 +339,9 @@ void verificare() {
                 for (int r = 0; r < 26; r++)
                     if (litera[r].lit[0] == cuvant_gasit[i])
                         litera[r].informatie = 16;
-            } else {
+            } 
+            else 
+            {
                 int litera_buna = 0;
                 for (int j = 0; j < 6 && !litera_buna; j++)
                     if (cuvant[index_random][j] == cuvant_gasit[i])
@@ -350,7 +355,9 @@ void verificare() {
                     for (int r = 0; r < 26; r++)
                         if (litera[r].lit[0] == cuvant_gasit[i] && litera[r].lit[0] != 16)
                             litera[r].informatie = 15;
-                } else {
+                } 
+                else 
+                {
                     cout << cuvant_gasit[i] << " -1" << endl;
                     for (int r = 0; r < 26; r++)
                         if (litera[r].lit[0] == cuvant_gasit[i])
