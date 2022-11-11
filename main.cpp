@@ -15,7 +15,7 @@ const int PRODUS_CAR_CARD = 5;
 const int PRODUS_CAR_MAX = 3150;
 
 int stiva_combinari[COMBINARI_MAX], a, combinari_n = 26, numar_solutie_combinari, solutie_combinari[COMBINARI_MAX][NUMAR_LITERE_CUVANT];
-int stiva_produs_car[PRODUS_CAR_MAX], b, produs_car_n = 26, numar_solutie_produs_car, solutie_produs_car[PRODUS_CAR_MAX][NUMAR_LITERE_CUVANT], primmul_produs_car = 1;
+int stiva_produs_car[PRODUS_CAR_MAX], b, numar_solutie_produs_car, solutie_produs_car[PRODUS_CAR_MAX][NUMAR_LITERE_CUVANT], primmul_produs_car = 1;
 int vector_corect[NUMAR_LITERE_CUVANT], vector_incorect[NUMAR_LITERE_CUVANT][NUMAR_LITERE], numar_col_incorect[NUMAR_LITERE_CUVANT];
 int index_random, numar_solutii, index_cuvant, numar_incercari;
 long long vector_frecventa[NUMAR_LITERE];
@@ -129,7 +129,7 @@ void produs_car_initializare() {
 }
 
 int produs_car_succesor() {
-    if (stiva_produs_car[b] < produs_car_n) {
+    if (stiva_produs_car[b] < PRODUS_CAR_CARD) {
         stiva_produs_car[b]++;
         return 1;
     } else
@@ -254,6 +254,7 @@ void initializare_generare() {
         for (j = 0; j < 5; j++)
             solutie_combinari[i][j] = -1;
     numar_solutie_combinari = 0;
+    gasit_cuvant = 0;
     combinari_n = 0;
     for (i = 0; i < 26; i++)
         if (litera[i].informatie != -1)
@@ -263,7 +264,7 @@ void initializare_generare() {
 
 //Generare cuvant
 int generare() {
-
+    initializare_generare();
     combinari_back();
     quick(0, 25);
     for (int i = 0; i < numar_solutie_combinari && !gasit_cuvant; i++) {
@@ -281,6 +282,7 @@ int generare() {
             cuvant_din_produs_car[3] = cuvant_din_combinari[solutie_produs_car[k][3] - 1][0];
             cuvant_din_produs_car[4] = cuvant_din_combinari[solutie_produs_car[k][4] - 1][0];
             cuvant_din_produs_car[5] = '\0';
+
             if (cautare_binara(cuvant_din_produs_car, 0, 11455) == 1) {
                 strcpy(sir_din_solutii[numar_solutii++], cuvant_din_produs_car);
                 gasit_cuvant = 1;
@@ -289,10 +291,7 @@ int generare() {
         }
     }
     primmul_produs_car = 0;
-    if (gasit_cuvant == 0)
-        cout << "nu am gasit cuv" << endl;
-
-    int i, j, l, stg, len, lmax = -1, car, lit, poz1 = 0, poz2 = numar_solutii - 1;
+    int i=0, j, l, stg, len, lmax = -1, car, lit, poz1 = 0, poz2 = numar_solutii - 1;
     for (int re = 0; re < 5 && poz1 < poz2; re++) {
         i = poz1;
         j = poz2;
@@ -372,6 +371,6 @@ int main() {
     do {
         index_cuvant = generare();
         verificare();
-    } while (gasit_solutie);
+    } while (!gasit_solutie);
     return 0;
 }
