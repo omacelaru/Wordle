@@ -1,2 +1,2 @@
 # Wordle
-main.cpp contine jocul Wordle pentru client.
+main.cpp contine doar jocul Wordle care poate fi jucat de client de la tastatura.
