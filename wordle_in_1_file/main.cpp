@@ -246,6 +246,7 @@ void calc_informatie() {
     g.close();
 }
 
+//Initializari pentru generarea cuvantului
 void initializare_generare() {
     int i, j;
     for (i = 0; i < numar_solutie_combinari; i++)
