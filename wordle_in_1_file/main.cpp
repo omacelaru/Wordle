@@ -21,6 +21,7 @@ int index_random, numar_solutii, index_cuvant, numar_incercari;
 int vector_frecventa[NUMAR_LITERE];
 char cuvant[NUMAR_CUVINTE][NUMAR_LITERE_CUVANT], litera_din_combinari[COMBINARI_MAX][NUMAR_LITERE_CUVANT], cuvant_din_produs_car[NUMAR_LITERE_CUVANT], sir_de_solutii[PRODUS_CAR_MAX][NUMAR_LITERE_CUVANT];
 bool gasit_cuvant = false, gasit_solutie = false;
+ofstream gout("solutie.txt");
 
 struct alfa {
     float informatie;
@@ -152,7 +153,7 @@ int produs_car_valid() {
             if (stiva_produs_car[b] != x + 1)
                 return 0;
         }
-    
+
     for (i = 0; i < 5; i++) {
         if (vector_incorect[i][0] != -1 && b == i + 1) {
             nr = 0;
@@ -231,6 +232,7 @@ void cuvant_random() {
     srand(time(0));
     for (int i = 0; i < 10; i++)
         index_random = rand() % 11454;
+    gout << "\n" << cuvant[index_random] << ",";
 }
 
 //Calcul pentru informatia fiecarei litere
@@ -320,18 +322,16 @@ void verificare() {
     strcpy(cuvant_gasit, sir_de_solutii[index_cuvant]);
     cuvant_gasit[5] = '\0';
     cout << cuvant_gasit << endl;
-    
-    if (strcmp(cuvant[index_random], cuvant_gasit) == 0)
-    {
+    gout << cuvant_gasit << ",";
+
+    if (strcmp(cuvant[index_random], cuvant_gasit) == 0) {
         gasit_solutie = true;
         for (int i = 0; i < 5; i++)
             cout << cuvant_gasit[i] << " 1" << endl;
         cout << endl << "Bravo MIE! Am ghicit cuvantul " << cuvant[index_random] << " din " << numar_incercari + 1
              << " incercari"
              << endl;
-    } 
-    else
-    {
+    } else {
         for (int i = 0; i < 5; i++) {
             if (cuvant[index_random][i] == cuvant_gasit[i]) {
                 cout << cuvant_gasit[i] << " 1" << endl;
@@ -340,9 +340,7 @@ void verificare() {
                 for (int r = 0; r < 26; r++)
                     if (litera[r].lit[0] == cuvant_gasit[i])
                         litera[r].informatie = 16;
-            } 
-            else 
-            {
+            } else {
                 int litera_buna = 0;
                 for (int j = 0; j < 6 && !litera_buna; j++)
                     if (cuvant[index_random][j] == cuvant_gasit[i])
@@ -356,9 +354,7 @@ void verificare() {
                     for (int r = 0; r < 26; r++)
                         if (litera[r].lit[0] == cuvant_gasit[i] && litera[r].lit[0] != 16)
                             litera[r].informatie = 15;
-                } 
-                else 
-                {
+                } else {
                     cout << cuvant_gasit[i] << " -1" << endl;
                     for (int r = 0; r < 26; r++)
                         if (litera[r].lit[0] == cuvant_gasit[i])
